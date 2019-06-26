@@ -1,9 +1,23 @@
+/***********
+ * Program to turn on and off home appliance from remote system
+ * 
+ * Developed by 
+ * C.Obedotto
+ * Associate Professor,
+ * Saveetha Engineering College,
+ * 
+ *  E-mail: obedotto@saveetha.ac.in
+ */
 package control;
 
 public class LightControl {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	/********
+	 * Program Entry Point
+	 * @param args command line parameters
+	 */	
+	public static void main(String[] args) throws Exception 
+	{ 
 		WiFiRelay s1,s2;
 		
 			s1=new WiFiRelay("172.17.65.195", 4210);

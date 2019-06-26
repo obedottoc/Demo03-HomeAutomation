@@ -43,6 +43,11 @@ public class WiFiRelay {
 		}	
 	}
 	
+	/***
+	 * Send data to ESP8266 board
+	 * @param data 0 for turn off, 1 for turn on and other for getting the status of the relay
+	 * @return true if send succeeded, false if failed
+	 */
 	private boolean sendData(int data)
 	{
 		boolean status=false;
@@ -63,6 +68,10 @@ public class WiFiRelay {
 		return status;
 	}
 	
+	/****
+	 * To receive data from ESP8266 board
+	 * @return 0 if switch is off, 1 if the switch is on
+	 */
 	private Integer receiveData()
 	{
 		Integer result=null;
@@ -86,16 +95,30 @@ public class WiFiRelay {
 		return result;				
 	}
 	
+	/********
+	 * To turn on the relay
+	 * @return true if succeeded, false if failed.
+	 */
 	public boolean switchOn()
 	{
 		return this.sendData(1);
 	}
 	
+	
+	/*****
+	 * To turn off the relay
+	 * @return true if succeeded, false if failed.
+	 */
 	public boolean switchOff()
 	{
 		return this.sendData(0);
 	}	
 	
+	
+	/********
+	 * To find the status of the relay
+	 * @return 1 if it is on, 0 if it is off and other if failed to connect.
+	 */
 	public int isOn()
 	{
 		int status=2,i=0;
