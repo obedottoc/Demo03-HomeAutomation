@@ -20,8 +20,12 @@ public class LightControlGUI extends Frame implements ActionListener
 	Button lighton1,lightoff1,lighton2,lightoff2;
 	Panel lightstatus1,lightstatus2;
 	Timer refresh;
+	WiFiRelay s1,s2;
 	public LightControlGUI()
 	{
+		s1=new WiFiRelay("172.17.90.40", 4210);
+		s2=new WiFiRelay("172.17.90.40", 4211);
+		
 		setLayout(new GridLayout(3, 2));
 		lightstatus1=new Panel();
 		lightstatus2=new Panel();
@@ -46,8 +50,30 @@ public class LightControlGUI extends Frame implements ActionListener
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
-				System.out.println("Timer Event...");
+			int lightstate;
+				lightstate=s1.isOn();
+				if(lightstate==1)
+				{
+					lightstatus1.setBackground(new Color(0, 255, 0));					
+				}else if (lightstate==2)
+				{
+					lightstatus1.setBackground(new Color(255, 0, 0));
+				}else
+				{
+					lightstatus1.setBackground(new Color(255, 255, 0));
+				}
+				
+				lightstate=s2.isOn();
+				if(lightstate==1)
+				{
+					lightstatus2.setBackground(new Color(0, 255, 0));					
+				}else if (lightstate==2)
+				{
+					lightstatus2.setBackground(new Color(255, 0, 0));
+				}else
+				{
+					lightstatus2.setBackground(new Color(255, 255, 0));
+				}
 			}
 		}, 500,500);
 		
@@ -112,19 +138,45 @@ public class LightControlGUI extends Frame implements ActionListener
 		Object s=ae.getSource();
 		if(s==lightoff1)
 		{
-			lightstatus1.setBackground(new Color(255, 0, 0));
+			if(s1.switchOff())
+			{
+				System.out.println("Succeeded.");
+			}else
+			{
+				System.out.println("Failed.");
+			}			
 		}
 		if(s==lighton1)
 		{
+			if(s1.switchOn())
+			{
+				System.out.println("Succeeded.");
+			}else
+			{
+				System.out.println("Failed.");
+			}
+		
 			lightstatus1.setBackground(new Color(0, 255, 0));
 		}
 		if(s==lightoff2)
 		{
-			
+			if(s2.switchOff())
+			{
+				System.out.println("Succeeded.");
+			}else
+			{
+				System.out.println("Failed.");
+			}			
 		}
 		if(s==lighton2)
 		{
-			
+			if(s1.switchOn())
+			{
+				System.out.println("Succeeded.");
+			}else
+			{
+				System.out.println("Failed.");
+			}			
 		}
 	}
 
