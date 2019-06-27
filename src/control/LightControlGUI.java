@@ -51,11 +51,12 @@ public class LightControlGUI extends Frame implements ActionListener
 			@Override
 			public void run() {
 			int lightstate;
+						
 				lightstate=s1.isOn();
 				if(lightstate==1)
 				{
 					lightstatus1.setBackground(new Color(0, 255, 0));					
-				}else if (lightstate==2)
+				}else if (lightstate==0)
 				{
 					lightstatus1.setBackground(new Color(255, 0, 0));
 				}else
@@ -67,7 +68,7 @@ public class LightControlGUI extends Frame implements ActionListener
 				if(lightstate==1)
 				{
 					lightstatus2.setBackground(new Color(0, 255, 0));					
-				}else if (lightstate==2)
+				}else if (lightstate==0)
 				{
 					lightstatus2.setBackground(new Color(255, 0, 0));
 				}else
@@ -170,7 +171,7 @@ public class LightControlGUI extends Frame implements ActionListener
 		}
 		if(s==lighton2)
 		{
-			if(s1.switchOn())
+			if(s2.switchOn())
 			{
 				System.out.println("Succeeded.");
 			}else
